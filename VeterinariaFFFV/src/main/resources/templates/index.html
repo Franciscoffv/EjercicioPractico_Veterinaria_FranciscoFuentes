@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
-<head th:replace="~{layout/plantilla :: head}">
-    <title>Veterinaria La Aurora</title>
-</head>
-<body>
-    <header th:replace="~{layout/plantilla :: header}"/>
+<header th:fragment="header" class="header">
+    <div style="width: 100%; background-color: #00BFFF; padding: 15px 0;">
+        <h1 style="color: white; text-align: center; margin: 0;">Veterinaria La Aurora</h1>
+    </div>
+</header>
+</body>
 
-    <!-- Botones azules redirigiendo a la página de categorías -->
-    <nav style="text-align: center; margin: 20px;">
-        <button style="background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 10px;"
-                onclick="window.location.href='categoria.html'">
-            Servicios
-        </button>
-        <button style="background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 10px;"
-                onclick="window.location.href='categoria.html'">
-            Horarios
-        </button>
-    </nav>
+<section id="Iframe" style="text-align: center; display: flex; justify-content: center; align-items: flex-start;">
+    <!-- Horarios a la izquierda -->
+    <div style="flex: 1; text-align: left; margin-right: 20px;">
+        <h3>Horarios de Atención</h3>
+        <ul>
+            <li>Lunes a Viernes: 8:00 AM - 6:00 PM</li>
+            <li>Sábado: 9:00 AM - 2:00 PM</li>
+            <li>Domingo: Cerrado</li>
+        </ul>
+    </div>
 
-    <section id="Iframe" style="text-align: center;">
+    <!-- Video en el centro -->
+    <div style="flex: 2;">
         <h2>Veterinaria La Aurora</h2>
         <iframe width="626" height="360"
                 src="https://www.youtube.com/embed/hnmlon-vagE"
@@ -30,10 +31,23 @@
                 allowfullscreen>
         </iframe>
         <h5>Acá un video que muestra el cuidado y respeto por los animales</h5>
-    </section>
+    </div>
 
+    <!-- Servicios a la derecha -->
+    <div style="flex: 1; text-align: left; margin-left: 20px;">
+        <h3>Servicios</h3>
+        <ul>
+            <li>Consultas generales</li>
+            <li>Vacunación</li>
+            <li>Desparasitación</li>
+            <li>Cirugías menores</li>
+            <li>Baño y estética</li>
+        </ul>
+    </div>
+</section>
 
-
-    <footer th:replace="~{layout/plantilla :: footer}"/>
+<footer th:replace="~{layout/plantilla :: footer}"/>
 </body>
+
+
 </html>

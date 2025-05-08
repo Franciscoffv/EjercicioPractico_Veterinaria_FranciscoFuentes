@@ -6,13 +6,50 @@
         <meta charset="UTF-8"/>      
     </head>
     <body>
-        <!-- Encabezado estilo cine -->
-        <header th:fragment="header" class="header">
-            <nav class="navbar navbar-expand-lg" style="background-color: #b30000; padding-top: 15px; padding-bottom: 15px;">
-                <div class="container-fluid">
-                    <a class="navbar-brand text-white" th:href="@{/}">Veterinaria La Aurora</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+
+<header th:fragment="header" class="header">
+    <nav class="navbar navbar-expand-lg" style="background-color: #00BFFF; padding-top: 15px; padding-bottom: 15px;">
+        <div class="container-fluid">
+            <span class="navbar-brand text-white" style="font-weight: bold;">Veterinaria La Aurora</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_VENDEDOR')">
+                        <a class="nav-link text-white" th:href="@{/categoria/listado}">Categorias</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_VENDEDOR')">
+                        <a class="nav-link text-white" th:href="@{/libro/listado}">Películas</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_USUARIO')">
+                        <a class="nav-link text-white" th:href="@{/prestamo/listado}">Prestamos</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_USUARIO')">
+                        <a class="nav-link text-white" th:href="@{/devolucion/listado}">Devoluciones</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link text-white" th:href="@{/usuario/listado}">Usuarios</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" sec:authorize='!isAuthenticated()'>
+                    <li class='nav-item'></li>
+                </ul>
+                <ul class="navbar-nav" sec:authorize='isAuthenticated()'>
+                    <li class='nav-item text-white my-auto'>
+                        <form method="post" th:action='@{/logout}'>
+                            <button class='btn btn-dark'>
+                                <i class="fas fa-right-from-bracket"></i> Salir
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
@@ -52,13 +89,12 @@
 
         <!-- Pie de página estilo cine -->
 <footer th:fragment="footer" class="text-white mt-5 p-2" style="background-color: #00BFFF; position: relative; bottom: 0; width: 100%; padding-bottom: 20px;">
-            <div class="container">
-                <div class="col">
-                    <p class="lead text-center">
-                       Bienvenido a Veterinaria La Aurora
-                    </p>
-                </div>
-            </div>
-        </footer>
-    </body>
-</html>
+    <div class="container" style="display: flex; justify-content: center; align-items: center;">
+        <div class="col">
+            <p class="lead text-center">
+               Bienvenido a Veterinaria La Aurora
+            </p>
+        </div>
+    </div>
+</footer>
+
