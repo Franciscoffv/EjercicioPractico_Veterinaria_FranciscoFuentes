@@ -39,9 +39,6 @@
                         </ul>
                         <ul class="navbar-nav" sec:authorize='!isAuthenticated()'>
                             <li class='nav-item'>
-                               <a class="nav-link text-white" th:href="@{/categoria/listado}">Categorias</a>
-                                    <i class="fas fa-right-to-bracket"></i> Iniciar Sesión
-                                </a>
                             </li>
                         </ul>
                         <ul class="navbar-nav" sec:authorize='isAuthenticated()'>

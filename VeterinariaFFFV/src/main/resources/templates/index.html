@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Veterinaria La Aurora</title>
+</head>
+<body>
+    <header th:replace="~{layout/plantilla :: header}"/>
+
+    <!-- Botones azules redirigiendo a la página de categorías -->
+    <nav style="text-align: center; margin: 20px;">
+        <button style="background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 10px;"
+                onclick="window.location.href='categoria.html'">
+            Servicios
+        </button>
+        <button style="background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 10px;"
+                onclick="window.location.href='categoria.html'">
+            Horarios
+        </button>
+    </nav>
+
+    <section id="Iframe" style="text-align: center;">
+        <h2>Veterinaria La Aurora</h2>
+        <iframe width="626" height="360"
+                src="https://www.youtube.com/embed/hnmlon-vagE"
+                title="Acá un video sobre el cuidado animal"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+        </iframe>
+        <h5>Bienvenido a la página de Veterinaria La Aurora</h5>
+    </section>
+
+
+
+    <footer th:replace="~{layout/plantilla :: footer}"/>
+</body>
+</html>
