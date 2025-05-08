@@ -1,172 +1,37 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/plantilla :: head}">
-    <title>Examen2</title>
+    <title>Ubicación - Veterinaria Vida Animal</title>
+    <meta charset="UTF-8"/>
 </head>
-<body style="height: 100%; overflow-y: scroll;">
-    <!-- 1 Botón de agregar -->
-    <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">   
-                    <button 
-                        type="button" 
-                        sec:authorize="hasRole('ROLE_ADMIN')"
-                        class="btn btn-outline-light btn-block" 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#agregarCategoria">
-                        <i class="fas fa-plus"></i> Agregar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+<body>
+<header th:replace="~{layout/plantilla :: header}"></header>
 
-    <!-- 2 Modal para agregar -->
-    <section th:fragment="agregarCategoria">
-        <div id="agregarCategoria" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title">Agregar</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div> 
-                    <form th:action="@{/categoria/guardar}" th:object="${categoria}"
-                          method="POST" class="was-validated" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="descripcion">Descripción</label>
-                                <input type="text" class="form-control" name="descripcion" required="true"/>
-                            </div>
-                            <div class="mb-3">
-                                <label for="activo">Activo</label>
-                                <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" type="submit">Guardar</button>
-                        </div>
-                    </form>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white text-center">
+                    <h3><i class="fas fa-map-marker-alt me-2"></i>Ubicación de la Veterinaria</h3>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3 Listado de categorías -->
-    <section th:fragment="listadoCategorias" id="categorias">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="card border-primary">
-                        <div class="card-header bg-primary text-white">
-                            <h4>Categorías</h4>
-                        </div>
-                        <div style="max-height: 500px; overflow-y: auto;">
-                            <div th:if="${categorias != null and !categorias.empty}">
-                                <table class="table table-striped table-hover">
-                                    <thead class="table-primary">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Descripción</th>
-                                            <th>Estado</th>
-                                            <th>Acciones</th>
-                                            <th sec:authorize="hasRole('ROLE_ADMIN')"></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="categoria, contador : ${categorias}">
-                                            <td>[[${contador.count}]]</td>
-                                            <td>[[${categoria.descripcion}]]</td>
-                                            <td th:text="${categoria.activo} ? 'Activa' : 'Inactiva'" />
-                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
-                                                <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}" class="btn btn-outline-danger">
-                                                    <i class="fas fa-trash"></i> Eliminar
-                                                </a>
-                                                <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}" class="btn btn-outline-primary">
-                                                    <i class="fas fa-pencil"></i> Actualizar
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="text-center p-2" th:if="${categorias == null or categorias.empty}">
-                                <span>Lista vacía</span>
-                            </div>
-                        </div>
+                <div class="card-body">
+                    <h4 class="text-center mb-4">Veterinaria Vida Animal</h4>
+                    <p><strong>Dirección:</strong> Avenida Central #123, San José, Costa Rica</p>
+                    <p><strong>Teléfono:</strong> +506 2222-3344</p>
+                    <p><strong>Correo:</strong> contacto@vidaanimal.cr</p>
+                    <p><strong>Horario de atención:</strong> Lunes a Sábado, de 8:00 a.m. a 6:00 p.m.</p>
+                    <div class="mt-4 text-center">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.0917758025026!2d-84.09032928593282!3d9.93333277616121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fae9e4d4b6ef%3A0x84f0035b29bbeb17!2sSan%20Jos%C3%A9%2C%20Costa%20Rica!5e0!3m2!1ses!2scr!4v1641234567890"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- 4 Fragmento para editar categoría -->
-    <section th:fragment="editarCategoria">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <form method="POST"
-                      th:action="@{/categoria/guardar}" 
-                      th:object="${categoria}"
-                      class="was-validated"                          
-                      enctype="multipart/form-data">
-                    <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
-                    <section th:replace="~{categoria/fragmentos :: botonesEditar}"/>
-                    <div id="details">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card border-primary">
-                                        <div class="card-header bg-primary text-white">
-                                            <h4>Actualizar</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="mb-3">
-                                                <label for="descripcion">Descripción</label>
-                                                <input type="text" class="form-control" 
-                                                       name="descripcion" th:field="*{descripcion}" required="true">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="activo">Activo</label>
-                                                <input class="form-check-input" 
-                                                       type="checkbox" 
-                                                       name="activo" 
-                                                       id="activo"
-                                                       th:field="*{activo}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5 Fragmento botones editar -->
-    <section th:fragment="botonesEditar">
-        <div class="container py-4 mb-4 bg-primary text-white rounded">
-            <div class="row">
-                <div class="col-md-4 d-grid">
-                    <a th:href="@{/categoria/listado}" class="btn btn-outline-light">
-                        <i class="fas fa-arrow-left"></i> Regresar
-                    </a>
-                </div>
-                <div class="col-md-4 d-grid"> 
-                    <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}" class="btn btn-outline-light">
-                        <i class="fas fa-trash"></i> Eliminar
-                    </a>
-                </div>
-                <div class="col-md-4 d-grid">
-                    <button type="submit" class="btn btn-outline-light">
-                        <i class="fas fa-check"></i> Guardar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer th:replace="~{layout/plantilla :: footer}"></footer>
 </body>
 </html>
